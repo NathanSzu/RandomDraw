@@ -1,4 +1,5 @@
 import './App.css';
+import SignIn from './components/SignIn'
 
 // Importing firebase SDK
 import firebase from 'firebase/app';
@@ -33,7 +34,7 @@ function App() {
   return (
     <div className="">
       <header className="">
-        
+        {user ? <h1>logged in</h1> : <SignIn auth={auth} />}
       </header>
     </div>
   );
