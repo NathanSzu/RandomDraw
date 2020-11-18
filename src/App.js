@@ -28,23 +28,31 @@ const auth = firebase.auth();
 const firestore = firebase.firestore();
 
 function App() {
-    // Stores info of currently logged in user as an object
-    const [user] = useAuthState(auth);
+  // Stores info of currently logged in user as an object
+  const [user] = useAuthState(auth);
 
-    const signOutFirebase = () => {
-      firebase.auth().signOut().then(() => {
+  const signOutFirebase = () => {
+    firebase.auth().signOut().then(() => {
 
-      }).catch((err) => {
-          console.log(err)
-      })
+    }).catch((err) => {
+      console.log(err)
+    })
   }
-    
+
   return (
     <main className="">
-      {user ? <button onClick={signOutFirebase}>Sign Out</button>: null}
-      <header className="">
-        {user ? <h1>logged in</h1> : <SignIn auth={auth} />}
-      </header>
+      <nav className="row">
+        <div className="col-4">
+          {user ? <button onClick={signOutFirebase}>Sign Out</button> : null}
+        </div>
+        <div className="col-4">
+          <img />
+        </div>
+        <div className="col-4">
+          {user ? <button onClick={signOutFirebase}>Sign Out</button> : null}
+        </div>
+      </nav>
+      {user ? <h1>logged in</h1> : <SignIn auth={auth} />}
     </main>
   );
 }
