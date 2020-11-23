@@ -14,12 +14,12 @@ export default function SignIn({ auth }) {
         <main className='col-md-4 ml-auto mr-auto'>
             <form>
                 <label htmlFor='email'>
-                    LALA
+                    Email
                 </label>
                 <input className='w-100' id='email' type='email'>
                 </input>
                 <label htmlFor='password'>
-                    LALA
+                    Password
                 </label>
                 <input className='w-100' id='password' type='password'>
                 </input>
