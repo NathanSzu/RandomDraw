@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
 import All from './pages/All';
 import Favorites from './pages/Favorites';
 import SignIn from './pages/SignIn';
-import SignUp from './pages/SignUp'
 
 // Importing firebase SDK
 import firebase from 'firebase/app';
@@ -62,7 +61,6 @@ function App() {
         <Route exact path='/' render={() => user ? <Favorites /> : <Redirect to={'/login'} />} />
         <Route exact path='/all' component={user ? All : SignIn} />
         <Route exact path='/login' render={() => <SignIn auth={auth} />} />
-        <Route exact path='/signup' component={SignUp} />
       </Router>
 
       {/* {user ? <h1>logged in</h1> : <SignIn auth={auth} />} */}
