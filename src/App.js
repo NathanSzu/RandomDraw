@@ -46,8 +46,8 @@ function App() {
     <div className="">
 
       <Router>
-        <Route exact path='/' render={() => user ? <View /> : <Redirect to={'/login'} />} />
-        <Route exact path='/login' render={() => <SignIn auth={auth} />} />
+        <Route exact path='/' render={() => user ? <View user={user} /> : <Redirect to={'/login'} />} />
+        <Route exact path='/login' render={() => <SignIn user={user} auth={auth} />} />
       </Router>
 
     </div>

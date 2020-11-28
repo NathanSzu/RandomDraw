@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import { Redirect } from 'react-router';
 
-export default function SignIn({ auth }) {
+export default function SignIn({ auth, user }) {
 
     const [signIn, setSignIn] = useState(true);
     const [btnTxt, setBtnTxt] = useState("First time user? Sign up here!");
@@ -62,6 +63,11 @@ export default function SignIn({ auth }) {
             setSignIn(true)
             setBtnTxt("First time user? Sign up here!")
         }
+    }
+
+    // Checks if user is logged in and redirects to the root route accordingly
+    if (user) {
+        return <Redirect to='/' />;
     }
 
     return (
