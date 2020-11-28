@@ -17,24 +17,39 @@ export default function SignIn({ auth }) {
         auth.signInWithPopup(provider);
     }
 
+    // Function to create a new user account with email and password.
     const signUpWithEmail = (e) => {
         e.preventDefault()
         if (password.trim() === confirmPassword.trim()) {
             firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then((user) => {
-                // Signed in 
-                // ...
-            })
-            .catch((error) => {
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                // ..
-            });
+                .then((user) => {
+                    // Signed in 
+                    // ...
+                })
+                .catch((error) => {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    // ..
+                });
         } else {
             alert("Passwords must match")
         }
+    }
 
-        
+    // Function to login to an existing user account with email and password.
+    const signInWithEmail = (e) => {
+        e.preventDefault()
+    
+            firebase.auth().signInWithEmailAndPassword(email, password)
+                .then((user) => {
+                    // Signed in 
+                    // ...
+                })
+                .catch((error) => {
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    // ..
+                });
     }
 
     // Function to toggle the signIn state
@@ -54,11 +69,11 @@ export default function SignIn({ auth }) {
             <form>
                 {/* Input and label for email */}
                 <label htmlFor='email'>Email</label>
-                <input onChange={(e) => {setEmail(e.target.value)}} className='w-100' id='email' type='email' />
+                <input onChange={(e) => { setEmail(e.target.value) }} className='w-100' id='email' type='email' />
 
                 {/* Input and label for password */}
                 <label htmlFor='password'>Password</label>
-                <input onChange={(e) => {setPassword(e.target.value)}} className='w-100' id='password' type='password' />
+                <input onChange={(e) => { setPassword(e.target.value) }} className='w-100' id='password' type='password' />
 
                 {/* Password match input and label that only shows up if the user is creating an account */}
                 {signIn ?
@@ -66,13 +81,13 @@ export default function SignIn({ auth }) {
                     :
                     <>
                         <label htmlFor='password-match'>Retype Password</label>
-                        <input onChange={(e) => {setConfirmPassword(e.target.value)}} className='w-100' id='password-match' type='password' />
+                        <input onChange={(e) => { setConfirmPassword(e.target.value) }} className='w-100' id='password-match' type='password' />
                     </>
                 }
 
-                {/* Displays login or signup buttons baased on user input */}
+                {/* Displays login or signup buttons based on user input */}
                 {signIn ?
-                    <button className='w-100 mt-2' type='submit' value='login'>Login</button>
+                    <button onClick={signInWithEmail} className='w-100 mt-2' type='submit' value='login'>Login</button>
                     :
                     <button onClick={signUpWithEmail} className='w-100 mt-2' type='submit' value='signup'>Sign Up</button>
                 }
