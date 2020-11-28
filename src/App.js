@@ -44,24 +44,12 @@ function App() {
 
   return (
     <div className="">
-      {/* <nav className="row">
-        <div className="col-4">
-          {user ? <button onClick={signOutFirebase}>Sign Out</button> : null}
-        </div>
-        <div className="col-4">
-          <img />
-        </div>
-        <div className="col-4">
-          {user ? <button onClick={signOutFirebase}>Sign Out</button> : null}
-        </div>
-      </nav> */}
 
       <Router>
         <Route exact path='/' render={() => user ? <View /> : <Redirect to={'/login'} />} />
         <Route exact path='/login' render={() => <SignIn auth={auth} />} />
       </Router>
 
-      {/* {user ? <h1>logged in</h1> : <SignIn auth={auth} />} */}
     </div>
   );
 }
