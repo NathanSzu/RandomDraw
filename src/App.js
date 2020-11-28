@@ -1,8 +1,7 @@
 import './App.css';
 // import SignIn from './components/SignIn'
 import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
-import All from './pages/All';
-import Favorites from './pages/Favorites';
+import View from './pages/View';
 import SignIn from './pages/SignIn';
 
 // Importing firebase SDK
@@ -58,8 +57,7 @@ function App() {
       </nav> */}
 
       <Router>
-        <Route exact path='/' render={() => user ? <Favorites /> : <Redirect to={'/login'} />} />
-        <Route exact path='/all' component={user ? All : SignIn} />
+        <Route exact path='/' render={() => user ? <View /> : <Redirect to={'/login'} />} />
         <Route exact path='/login' render={() => <SignIn auth={auth} />} />
       </Router>
 
