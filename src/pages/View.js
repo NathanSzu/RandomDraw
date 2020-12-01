@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
-export default function All() {
+export default function View({ auth, user }) {
     const [viewToggle, setViewToggle] = useState('Collection');
     const [favorites, setFavorites] = useState(true);
 
@@ -14,6 +16,14 @@ export default function All() {
         }
     }
 
+    const signOut = () => {
+        firebase.auth().signOut().then(function () {
+            console.log('Signed Out');
+        }, function (error) {
+            console.error('Sign Out Error', error);
+        });
+    }
+
     return (
         <>
             <nav className='row'>
@@ -24,11 +34,11 @@ export default function All() {
                     LOGO
                 </div>
                 <div className='col-3'>
-                    <button className='w-100 mt-2' value='logout'>Sign Out</button>
+                    <button className='w-100 mt-2' onClick={signOut} value='logout'>Sign Out</button>
                 </div>
             </nav>
             <main>
-                {favorites ? 
+                {favorites ?
                     <div>Favorites</div>
                     :
                     <div>Collection</div>
