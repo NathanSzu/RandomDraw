@@ -30,6 +30,7 @@ export default function SignIn({ auth, user }) {
                 .catch((error) => {
                     var errorCode = error.code;
                     var errorMessage = error.message;
+                    console.log(errorCode, errorMessage);
                     // ..
                 });
         } else {
@@ -40,6 +41,7 @@ export default function SignIn({ auth, user }) {
     // Function to login to an existing user account with email and password.
     const signInWithEmail = (e) => {
         e.preventDefault()
+        console.log(email)
     
             firebase.auth().signInWithEmailAndPassword(email, password)
                 .then((user) => {
@@ -49,6 +51,7 @@ export default function SignIn({ auth, user }) {
                 .catch((error) => {
                     var errorCode = error.code;
                     var errorMessage = error.message;
+                    console.log(errorCode, errorMessage);
                     // ..
                 });
     }
