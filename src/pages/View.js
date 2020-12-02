@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import firebase from 'firebase/app';
+import Edit from '../components/Edit'
 import 'firebase/auth';
 
 export default function View({ auth, user }) {
@@ -17,12 +18,16 @@ export default function View({ auth, user }) {
         }
     };
 
-    const setAdd = () => {
+    const resetAddOrEdit = () => {
+        setAddOrEdit(null)
+    }
 
+    const setAdd = () => {
+        setAddOrEdit('add')
     };
 
     const setEdit = () => {
-
+        setAddOrEdit('edit')
     }
 
     const signOut = () => {
@@ -48,15 +53,14 @@ export default function View({ auth, user }) {
             </nav>
             <main>
                 {favorites ?
-                    <div>
+                    <div className='position-relative'>
                         <h1 className='text-center'>Favorites</h1>
                     </div>
                     :
-                    <div>
+                    <div className='position-relative'>
                         <h1 className='text-center'>Collection</h1>
-                        {addOrEdit === 'add' ? <h1>add</h1> : null}
-                        {addOrEdit ==='edit' ? <h1>edit</h1> : null}
-                        <button className='w-100' value='addList'>+</button>
+                        {addOrEdit === 'add' || addOrEdit === 'edit' ? <Edit resetAddOrEdit={resetAddOrEdit} /> : null}
+                        <button className='w-100' onClick={setAdd} value='addList'>+</button>
                     </div>
                 }
             </main>
