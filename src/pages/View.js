@@ -5,6 +5,7 @@ import 'firebase/auth';
 export default function View({ auth, user }) {
     const [viewToggle, setViewToggle] = useState('Collection');
     const [favorites, setFavorites] = useState(true);
+    const [addOrEdit, setAddOrEdit] = useState(null);
 
     const toggleView = () => {
         if (favorites) {
@@ -14,6 +15,14 @@ export default function View({ auth, user }) {
             setViewToggle('Collection');
             setFavorites(true);
         }
+    };
+
+    const setAdd = () => {
+
+    };
+
+    const setEdit = () => {
+
     }
 
     const signOut = () => {
@@ -25,10 +34,10 @@ export default function View({ auth, user }) {
     }
 
     return (
-        <>
+        <div className='col-md-4 ml-auto mr-auto'>
             <nav className='row'>
                 <div className='col-3'>
-                    <button className='w-100 mt-2' onClick={toggleView} value='logout'>{viewToggle}</button>
+                    <button className='w-100 mt-2' onClick={toggleView} value='viewToggle'>{viewToggle}</button>
                 </div>
                 <div className='col-6'>
                     LOGO
@@ -39,11 +48,18 @@ export default function View({ auth, user }) {
             </nav>
             <main>
                 {favorites ?
-                    <div>Favorites</div>
+                    <div>
+                        <h1 className='text-center'>Favorites</h1>
+                    </div>
                     :
-                    <div>Collection</div>
+                    <div>
+                        <h1 className='text-center'>Collection</h1>
+                        {addOrEdit === 'add' ? <h1>add</h1> : null}
+                        {addOrEdit ==='edit' ? <h1>edit</h1> : null}
+                        <button className='w-100' value='addList'>+</button>
+                    </div>
                 }
             </main>
-        </>
+        </div>
     )
 }
