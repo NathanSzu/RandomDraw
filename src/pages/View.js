@@ -59,7 +59,7 @@ export default function View({ auth, user }) {
                     :
                     <div className='position-relative'>
                         <h1 className='text-center'>Collection</h1>
-                        {addOrEdit === 'add' || addOrEdit === 'edit' ? <Edit resetAddOrEdit={resetAddOrEdit} /> : null}
+                        {addOrEdit === 'add' || addOrEdit === 'edit' ? <Edit addOrEdit={addOrEdit} resetAddOrEdit={resetAddOrEdit} /> : null}
                         <button className='w-100' onClick={setAdd} value='addList'>+</button>
                     </div>
                 }
