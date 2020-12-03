@@ -1,20 +1,41 @@
 import React, { useState } from 'react';
 import '../App.css'
 
-export default function Edit({ auth, user, resetAddOrEdit, addOrEdit }) {
+export default function Edit({ auth, user, resetAddOrEdit, addOrEdit, setEdit, setCurrentList, currentList }) {
+
+    const save = (e) => {
+        setEdit();
+        setCurrentList(document.querySelector('#title').value);
+    }
 
     return (
-        <div className='edit-background row'>
-            <div className='col-3'>
-                <button className='w-100'>Save</button>
+        <div className='edit-background'>
+            <div className='row'>
+                <div className='col-3'>
+                    <button className='w-100' onClick={save}>Save</button>
+                </div>
+                <div className='col-6 text-center'>
+                    <h2>
+                        {addOrEdit === 'edit' ? 'Edit List' : null}
+                        {addOrEdit === 'add' ? 'New List' : null}
+                    </h2>
+                </div>
+                <div className='col-3'>
+                    <button className='w-100' onClick={resetAddOrEdit}>X</button>
+                </div>
             </div>
-            <div className='col-6'>
-
+            <div className='row'>
+                <div className='col-12'>
+                    {addOrEdit === 'add' ? <form onSubmit={(e) => {e.preventDefault(); save()}}><input className='w-100' type='text' id='title' /></form> : null}
+                    {addOrEdit === 'edit' ?
+                        <>
+                            <h3>{currentList}</h3>
+                            <button className='w-100' value='addItem'>+</button>
+                        </> : null}
+                        {addOrEdit === 'edit' ? <button className='w-100'>Delete List</button> : null}
+                </div>
+                
             </div>
-            <div className='col-3'>
-                <button className='w-100' onClick={resetAddOrEdit}>X</button>
-            </div>
-            {addOrEdit === 'edit' ? <button className='w-100'>Delete</button> : null}
         </div>
     )
 }

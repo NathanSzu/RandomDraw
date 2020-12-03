@@ -7,6 +7,7 @@ export default function View({ auth, user }) {
     const [viewToggle, setViewToggle] = useState('Collection');
     const [favorites, setFavorites] = useState(true);
     const [addOrEdit, setAddOrEdit] = useState(null);
+    const [currentList, setCurrentList] = useState('');
 
     const toggleView = () => {
         if (favorites) {
@@ -59,7 +60,7 @@ export default function View({ auth, user }) {
                     :
                     <div className='position-relative'>
                         <h1 className='text-center'>Collection</h1>
-                        {addOrEdit === 'add' || addOrEdit === 'edit' ? <Edit addOrEdit={addOrEdit} resetAddOrEdit={resetAddOrEdit} /> : null}
+                        {addOrEdit === 'add' || addOrEdit === 'edit' ? <Edit addOrEdit={addOrEdit} setCurrentList={setCurrentList} currentList={currentList} resetAddOrEdit={resetAddOrEdit} setEdit={setEdit} /> : null}
                         <button className='w-100' onClick={setAdd} value='addList'>+</button>
                     </div>
                 }
