@@ -3,7 +3,7 @@ import firebase from 'firebase/app';
 import Edit from '../components/Edit'
 import 'firebase/auth';
 
-export default function View({ auth, user }) {
+export default function View({ auth, user, db }) {
     const [viewToggle, setViewToggle] = useState('Collection');
     const [favorites, setFavorites] = useState(true);
     const [addOrEdit, setAddOrEdit] = useState(null);
@@ -60,7 +60,7 @@ export default function View({ auth, user }) {
                     :
                     <div className='position-relative'>
                         <h1 className='text-center'>Collection</h1>
-                        {addOrEdit === 'add' || addOrEdit === 'edit' ? <Edit addOrEdit={addOrEdit} setCurrentList={setCurrentList} currentList={currentList} resetAddOrEdit={resetAddOrEdit} setEdit={setEdit} /> : null}
+                        {addOrEdit === 'add' || addOrEdit === 'edit' ? <Edit user={user} db={db} addOrEdit={addOrEdit} setCurrentList={setCurrentList} currentList={currentList} resetAddOrEdit={resetAddOrEdit} setEdit={setEdit} /> : null}
                         <button className='w-100' onClick={setAdd} value='addList'>+</button>
                     </div>
                 }

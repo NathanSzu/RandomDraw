@@ -28,7 +28,7 @@ firebase.initializeApp({
 
 // Referencing auth and firestore as global variables
 const auth = firebase.auth();
-const firestore = firebase.firestore();
+const db = firebase.firestore();
 
 function App() {
   // Stores info of currently logged in user as an object
@@ -46,7 +46,7 @@ function App() {
     <div className="">
 
       <Router>
-        <Route exact path='/' render={() => user ? <View user={user} /> : <Redirect to={'/login'} />} />
+        <Route exact path='/' render={() => user ? <View user={user} db={db} /> : <Redirect to={'/login'} />} />
         <Route exact path='/login' render={() => <SignIn user={user} auth={auth} />} />
       </Router>
 

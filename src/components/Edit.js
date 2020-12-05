@@ -1,11 +1,26 @@
 import React, { useState } from 'react';
-import '../App.css'
+import '../App.css';
 
-export default function Edit({ auth, user, resetAddOrEdit, addOrEdit, setEdit, setCurrentList, currentList }) {
+
+const { uuid } = require('uuidv4');
+
+export default function Edit({ auth, user, resetAddOrEdit, addOrEdit, setEdit, setCurrentList, currentList, db }) {
 
     const save = (e) => {
-        setEdit();
+        var listId = uuid()
+        console.log(listId)
         setCurrentList(document.querySelector('#title').value);
+        db.collection(user.uid).doc(listId).set({
+            title: document.querySelector('#title').value,
+            listId: listId
+        })
+        .then(function() {
+            console.log("Document successfully written!");
+            setEdit();
+        })
+        .catch(function(error) {
+            console.error("Error writing document: ", error);
+        });
     }
 
     return (
