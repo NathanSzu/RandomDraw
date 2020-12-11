@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import '../App.css';
-
-
 const { uuid } = require('uuidv4');
 
 export default function Edit({ auth, user, resetAddOrEdit, addOrEdit, setEdit, setCurrentList, currentList, db }) {
